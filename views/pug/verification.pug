@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title Verification
+    style.
+      body { font-family: Arial, sans-serif; background-color: rgb(79, 82, 83); text-align: center; padding: 50px; }
+      .container { background: #44537c; padding: 20px; border-radius: 15px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); display: inline-block; }
+      p#message { color: white; margin-top: 10px; font-weight: bold; }
+  body
+    div.container
+      h2 Verification
+      p Please check your email for the verification link.
+      p If you didn't receive it, you can request another one below.
+      form#resendForm
+        label(for="email") Email:
+        input#email(type="email" name="email" required)
+        button(type="submit") Resend Verification Email
+        p#message
+    script.
+      document.getElementById("resendForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const messageElement = document.getElementById("message");
+
+        try {
+          const response = await fetch("/resend-email-verification", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            messageElement.style.color = "lightgreen";
+            messageElement.textContent = `✅ ${data.message} to ${email}`;
+          } else {
+            messageElement.style.color = "red";
+            messageElement.textContent = "❌ " + data.message;
+          }
+        } catch (error) {
+          messageElement.style.color = "red";
+          messageElement.textContent = "❌ Error connecting to server.";
+        }
+      });
