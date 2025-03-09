@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPDM Admin</title>
+    <link rel="stylesheet" href="styless.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: rgb(129, 137, 139); ">
+    <dialog id="adminLoginDialog">
+        <h2>Admin Login</h2>
+        <form id="adminLoginForm">
+            <div class="container-fluid p-3">
+                <div>
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" id="username" name="username" placeholder="Enter admin username" required>
+                </div>                
+                <label for="password">Password:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Enter admin password" required>
+                    <span id="eyeIcon" class="eye-icon p-1" style = "background-color: white; border-radius: 0 5px 5px 0;">show</span>
+                </div>
+                    <p id="message" class="smt-3 mb-0 mx-auto" style="display:block; height: 20px;"></p>
+                    <p class="text-center mb-1 mt-2 mx-auto"  style="display:block;">Register a new Admin <a href="#" id="adminRegLink">Here</a></p>
+                <div class="d-flex justify-content-center loginButtons">
+                    <button class = "mt-3 mb-1 btn btn-primary" type="submit" id = "submitLogin">Login</button>
+                    <button class = "mt-3 mb-1 mx-3 btn btn-danger" type="button" id = "cancelLogin" onclick="resetLogin()">Cancel</button>            
+                </div>
+            </div>
+        </form>
+        <a class="text-center text-light" href="admin/forgot-password"  target="_blank">Forgot Password?</a>
+    </dialog>
+    <dialog id="adminMainDialog">
+        <h2>What would you like to do?</h2>
+        <div class="container p-3">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <button class="btn btn-primary shadow-lg w-100 py-2 fw-bold todo-button" onclick="openProjectReg()">Register New Project</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-warning shadow-lg w-100 py-2 fw-bold todo-button"  onclick="openFind()">Update Existing Project</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-danger shadow-lg w-100 py-2 fw-bold todo-button" onclick="openDeleteProject()">Delete Project</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success shadow-lg w-100 py-2 fw-bold todo-button">Send Email</button>
+                </div>
+            </div>
+        </div>
+        <button class="mt-3 mb-1 mx-3 btn btn-dark" type="button" id="cancelAdminMain" style="border-radius: 5px;" onclick="adminLoggedOut()">Logout</button>
+    </dialog>    
+    <dialog id="adminSignUpDialog">
+        <h2 class="mb-3">Admin Registration</h2>
+        <h5 class="mb-3">To register,you will need the credentials of a current admin member</h5>
+        <form id="adminRegistrationForm">
+          <!-- New Admin Credentials -->
+          <div class="mb-3">
+            <label for="newAdminUsername" class="form-label">New Admin Username</label>
+            <input type="text" class="form-control" id="newAdminUsername" name="newAdminUsername" placeholder="Enter New Admin Username" required>
+          </div>          
+          <label for="newAdminPassword" class="form-label">New Admin Password</label>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" id="newAdminPassword" name="newAdminPassword" placeholder="Enter New Admin Password" required>
+            <span id="eyeIconReg" class="eye-icon p-1" style = "background-color: white; border-radius: 0 5px 5px 0;">show</span>
+          </div>
+          <div class="mb-1">
+            <label for="newAdminEmail" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="newtAdminEmail" name="newAdminEmail" placeholder="Enter your email" required>
+        </div>
+          
+          <!-- Current Admin Authentication -->
+          <h4 class="mt-4">Current Admin Authentication</h4>
+          <p>Please enter your credentials to authorize the registration.</p>
+          <div class="mb-3">
+            <label for="currentAdminUsername" class="form-label">Current Admin Username</label>
+            <input type="text" class="form-control" id="currentAdminUsername" name="currentAdminUsername" placeholder="Enter Your Username" required>
+          </div>
+          <div class="mb-3">
+            <label for="currentAdminPassword" class="form-label">Current Admin Password</label>
+            <input type="password" class="form-control" id="currentAdminPassword" name="currentAdminPassword" placeholder="Enter Your Password" required>
+          </div>          
+          <p id="regmessage" class="mb-2" style="height: 20px;"></p>
+          <button type="submit" class="btn btn-primary">Register</button>
+          <button type="button" class="btn btn-danger" onclick="cancelReg()">Cancel</button>
+        </form>
+    </dialog> 
+    <dialog id="projectRegDialog">  
+        <h1 class="mb-4 text-center">Project Entry Form</h1>
+        <form id="projectRegForm" method="POST" action="/new-project">      
+        <!-- General Project Fields -->
+        <div class="mb-3">
+            <label for="project-id" class="form-label">Project ID</label>
+            <input type="number" class="form-control" id="projectId" name="projectId" placeholder="Enter Project ID" required>
+        </div>
+        <div class="mb-3">
+            <label for="project-name" class="form-label">Project Name</label>
+            <input type="text" class="form-control" id="projectName" name="projectName" placeholder="Enter Project Name" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location">
+        </div>
+        <div class="mb-3">
+            <label for="capacity" class="form-label">Capacity</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Enter Capacity (e.g., 110,000)">
+            </div>
+            </div>
+        <div class="mb-3">
+            <label for="client" class="form-label">Client</label>
+            <input type="text" class="form-control" id="client" name="client" placeholder="Enter Client" required>
+        </div>
+        <div class="mb-3">
+            <label for="client-home-county" class="form-label">Client Home County</label>
+            <input type="text" class="form-control" id="clientHomeCounty" name="clientHomeCounty" placeholder="Enter Client Home County">
+        </div>
+        <div class="mb-3">
+            <label for="project-partners-stakeholders" class="form-label">Project Partners/Stakeholders</label>
+            <input type="text" class="form-control" id="projectPartnersStakeholders" name="projectPartnersStakeholders" placeholder="Enter Project Partners/Stakeholders">
+        </div>
+        <div class="mb-3">
+            <label for="main-contractor" class="form-label">Main Contractor</label>
+            <input type="text" class="form-control" id="mainContractor" name="mainContractor" placeholder="Enter Main Contractor">
+        </div>
+        <div class="mb-3">
+            <label for="estimated-budget" class="form-label">Estimated Budget</label>
+            <input type="text" class="form-control" id="estimated-budget" name="estimated-budget" placeholder="Enter Estimated Budget e.g $50m">
+        </div>
+        <div class="mb-3">
+            <label for="contract-value" class="form-label">Contract Value</label>
+            <input type="text" class="form-control" id="contract-value" name="contract-value" placeholder="Contract Value e.g $10000000">
+        </div>          
+        <div class="mb-3">
+                <label for="local-spending" class="form-label">Local Spending</label>
+                <input type="text" class="form-control" id="local-spending" name="local-spending" placeholder="Enter Local Spending e.g ₦20m">
+        </div>
+        <div class="mb-3">
+            <label for="foreign-spending" class="form-label">Foreign Spending</label>
+               <input type="text" class="form-control" id="foreign-spending" name="foreign-spending" placeholder="Enter Foreign Spending e.g $100m">
+        </div>
+        <div class="mb-3">
+            <label for="project-scope" class="form-label">Project Scope</label>
+            <input type="text" class="form-control" id="project-scope" name="project-scope" placeholder="Enter Project Scope">
+        </div>
+        <div class="mb-3">
+            <label for="award-date" class="form-label">Award Date</label>
+            <input type="date" class="form-control" id="award-date" name="award-date">
+        </div>
+        <div class="mb-3">
+            <label for="project-start-up-date" class="form-label">Project Start-up Date</label>
+            <input type="date" class="form-control" id="project-start-up-date" name="project-start-up-date">
+        </div>
+        <div class="mb-3">
+            <label for="project-completion-date" class="form-label">Project Completion Date</label>
+            <input type="date" class="form-control" id="project-completion-date" name="project-completion-date">
+        </div>
+        <div class="mb-3">
+            <label for="project-status" class="form-label">Project Status</label>
+            <input type="text" class="form-control" id="project-status" name="project-status" placeholder="Enter Project Status">
+        </div>
+        <div class="mb-3">
+            <label for="project-schedule" class="form-label">Project Schedule</label>
+            <input type="text" class="form-control" id="project-schedule" name="project-schedule" placeholder="Enter Project Schedule">
+        </div>
+        <div class="mb-3">
+            <label for="local-content-plans" class="form-label">Local Content Plans</label>
+            <input type="text" class="form-control form-control-sm" id="local-content-plans" name="local-content-plans" placeholder="Enter Local Content Plans">
+        </div>
+        <div class=" mb-3">
+            <label for="milestones" class="form-label">Milestone(s)</label>
+            <input type="text" class="form-control" id = "milestones" name="milestones" placeholder="Enter Major Milestone with date e.g 1990:ProjectStartup">
+        </div>
+        </div>
+          <button type="button" id="add-milestone-btn" class="btn btn-primary mb-3" style="display: none;">Add Milestone</button>              
+        <div class="mb-3">
+            <label for="project-overview" class="form-label">Project Overview</label>
+            <input type="text" class="form-control" id="project-overview" name="project-overview" placeholder="Enter Project Overview">
+        </div>
+        <div class="mb-3">
+            <label for="project-overview" class="form-label">Classification</label>
+            <input type="text" class="form-control" id="classification" name="classification" placeholder="Enter Project Classification">
+        </div>
+        <div class="mb-3">
+            <label for="project-overview" class="form-label">Project Finance</label>
+            <input type="text" class="form-control" id="projectFinance" name="projectFinance" placeholder="Enter Project Finance">
+        </div>
+        <div class="mb-3">
+            <label for="sub-contractors" class="form-label">Sub-Contractors</label>
+            <input type="text" class="form-control" id="sub-contractors" name="sub-contractors" placeholder="Enter Sub-Contractor(s).Separate with comma">
+        </div>
+        <div class="mb-3">
+            <label for="section" class="form-label">Section</label>
+            <input type="text" class="form-control" id="section" name="section" placeholder="Enter project sectione e.g upstream or midstream">
+        </div>
+
+        <!-- Client (SNEPCo) Personnel Section -->
+        <h3 class="mt-5">Client Personnel</h3>
+        <div class="mb-3">
+            <label for="project-manager-name-client" class="form-label">Project Manager Name (Client)</label>
+            <input type="text" class="form-control" id="project-manager-name-client" name="project-manager-name-client" placeholder="Enter Project Manager Name (Client)">
+        </div>
+        <div class="mb-3">
+            <label for="project-manager-telephone-client" class="form-label">Project Manager Telephone (Client)</label>
+            <input type="tel" class="form-control" id="project-manager-telephone-client" name="project-manager-telephone-client" placeholder="Enter Project Manager Telephone (Client)">
+        </div>
+        <div class="mb-3">
+            <label for="project-manager-email-client" class="form-label">Project Manager Email (Client)</label>
+            <input type="email" class="form-control" id="project-manager-email-client" name="project-manager-email-client" placeholder="Enter Project Manager Email (Client)">
+        </div>
+        <div class="mb-3">
+            <label for="project-coordinator-name-client" class="form-label">Project Coordinator Name (Client)</label>
+            <input type="text" class="form-control" id="project-coordinator-name-client" name="project-coordinator-name-client" placeholder="Enter Project Coordinator Name (Client)">
+        </div>
+        <div class="mb-3">
+            <label for="project-coordinator-telephone-client" class="form-label">Project Coordinator Telephone (Client)</label>
+            <input type="tel" class="form-control" id="project-coordinator-telephone-client" name="project-coordinator-telephone-client" placeholder="Enter Project Coordinator Telephone (Client)">
+        </div>
+        <div class="mb-3">
+            <label for="project-coordinator-email-client" class="form-label">Project Coordinator Email (Client)</label>
+            <input type="email" class="form-control" id="project-coordinator-email-client" name="project-coordinator-email-client" placeholder="Enter Project Coordinator Email (Client)">
+        </div>
+        <div class="mb-3">
+            <label for="project-procurement-manager-name-client" class="form-label">Project Procurement Manager Name (Client)</label>
+            <input type="text" class="form-control" id="project-procurement-manager-name-client" name="project-procurement-manager-name-client" placeholder="Enter Project Procurement Manager Name (Client)">
+        </div>
+        <div class="mb-3">
+            <label for="project-procurement-manager-telephone-client" class="form-label">Project Procurement Manager Telephone (Client)</label>
+            <input type="tel" class="form-control" id="project-procurement-manager-telephone-client" name="project-procurement-manager-telephone-client" placeholder="Enter Project Procurement Manager Telephone (Client)">
+        </div>
+        <div class="mb-3">
+            <label for="project-procurement-manager-email-client" class="form-label">Project Procurement Manager Email (Client)</label>
+            <input type="email" class="form-control" id="project-procurement-manager-email-client" name="project-procurement-manager-email-client" placeholder="Enter Project Procurement Manager Email (Client)">
+        </div>
+
+        <!-- Main Contractor (TechnipFMC) Personnel Section -->
+        <h3 class="mt-5">Main Contractor (TechnipFMC) Personnel</h3>
+        <div class="mb-3">
+            <label for="project-manager-name-main-contractor" class="form-label">Project Manager Name (Main Contractor)</label>
+            <input type="text" class="form-control" id="project-manager-name-main-contractor" name="project-manager-name-main-contractor" placeholder="Enter Project Manager Name (Main Contractor)">
+        </div>
+        <div class="mb-3">
+            <label for="project-manager-telephone-main-contractor" class="form-label">Project Manager Telephone (Main Contractor)</label>
+            <input type="tel" class="form-control" id="project-manager-telephone-main-contractor" name="project-manager-telephone-main-contractor" placeholder="Enter Project Manager Telephone (Main Contractor)">
+        </div>
+        <div class="mb-3">
+            <label for="project-manager-email-main-contractor" class="form-label">Project Manager Email (Main Contractor)</label>
+            <input type="email" class="form-control" id="project-manager-email-main-contractor" name="project-manager-email-main-contractor" placeholder="Enter Project Manager Email (Main Contractor)">
+        </div>
+        <div class="mb-3">
+            <label for="project-coordinator-name-main-contractor" class="form-label">Project Coordinator Name (Main Contractor)</label>
+            <input type="text" class="form-control" id="project-coordinator-name-main-contractor" name="project-coordinator-name-main-contractor" placeholder="Enter Project Coordinator Name (Main Contractor)">
+        </div>
+        <div class="mb-3">
+            <label for="project-coordinator-telephone-main-contractor" class="form-label">Project Coordinator Telephone (Main Contractor)</label>
+            <input type="tel" class="form-control" id="project-coordinator-telephone-main-contractor" name="project-coordinator-telephone-main-contractor" placeholder="Enter Project Coordinator Telephone (Main Contractor)">
+        </div>
+        <div class="mb-3">
+            <label for="project-coordinator-email-main-contractor" class="form-label">Project Coordinator Email (Main Contractor)</label>
+            <input type="email" class="form-control" id="project-coordinator-email-main-contractor" name="project-coordinator-email-main-contractor" placeholder="Enter Project Coordinator Email (Main Contractor)">
+        </div>
+        <div class="mb-3">
+            <label for="project-procurement-manager-name-main-contractor" class="form-label">Project Procurement Manager Name (Main Contractor)</label>
+            <input type="text" class="form-control" id="project-procurement-manager-name-main-contractor" name="project-procurement-manager-name-main-contractor" placeholder="Enter Project Procurement Manager Name (Main Contractor)">
+        </div>
+        <div class="mb-3">
+            <label for="project-procurement-manager-telephone-main-contractor" class="form-label">Project Procurement Manager Telephone (Main Contractor)</label>
+            <input type="tel" class="form-control" id="project-procurement-manager-telephone-main-contractor" name="project-procurement-manager-telephone-main-contractor" placeholder="Enter Project Procurement Manager Telephone (Main Contractor)">
+        </div>
+        <div class="mb-3">
+            <label for="project-procurement-manager-email-main-contractor" class="form-label">Project Procurement Manager Email (Main Contractor)</label>
+            <input type="email" class="form-control" id="project-procurement-manager-email-main-contractor" name="project-procurement-manager-email-main-contractor" placeholder="Enter Project Procurement Manager Email (Main Contractor)">
+        </div>
+        <p id="projectSaveStatus"></p>
+        <button type="submit" id="projectRegSubmit" class="btn btn-primary mb-3">Submit</button>
+        <button type="button" id="projectRegCancel" class="btn btn-danger mb-3" onclick="closeProjectReg()">Cancel</button>
+        </form>      
+    </dialog>  
+    <dialog id="projectFindDialog">
+        <h2>Find Project</h2>
+        <form id="findProjectForm">
+            <div class="container-fluid p-3">
+                <div>
+                    <label for="projectFindId">Project ID</label>
+                    <input class="form-control" type="number" id="projectFindId" name="projectId" placeholder="Enter Project ID" required>
+                    <p class="m-2 text-light" id="projectFindMsg"></p>
+                </div>
+                    <button class = "mt-3 mb-1 btn btn-primary" type="submit" id = "submitFindId">Find</button>
+                    <button class = "mt-3 mb-1 mx-3 btn btn-danger" type="button" id = "cancelFindId" onclick="closeFind()">Cancel</button>            
+                </div>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="projectUpdateDialog">
+    </dialog>
+    <dialog id="deleteProjectDialog" class="delete">
+        <h2>Enter Project ID</h2>
+        <p>Deletion is permanent</p>
+        <form id="deleteProjectForm">
+            <div class="container-fluid p-3">
+                <div>
+                    <label for="deleteProject">Project ID</label>
+                    <input class="form-control" type="number" id="deleteProjectId" name="projectId" placeholder="Enter Project ID" required>
+                    <p class="m-2 text-light" id="projectDeleteMsg"></p>
+                </div>
+                    <button class = "mt-3 mb-1 btn btn-danger" type="submit" id = "submitDeleteId">Delete</button>
+                    <button class = "mt-3 mb-1 mx-3 btn btn-primary" type="button" id = "cancelDeleteId" onclick="closeDeleteProject()">Cancel</button>            
+                </div>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="daleteWarningDialog" class="delete">        
+    </dialog>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">        
+    </script>
+    <script src = "scrypt.js"></script>
+</body>
+</html>

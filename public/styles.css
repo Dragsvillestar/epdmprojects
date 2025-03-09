@@ -1,0 +1,491 @@
+body {
+    background-image: url("https://raw.githubusercontent.com/Dragsvillestar/new-git/refs/heads/master/oil%20rig%20photo.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -1;
+    position: relative;
+}
+body,html{
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.hk{
+    background-color: blue
+}
+.blur{
+    width:100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background-color: rgba(255,255, 255,0.6);
+    overflow: hidden;
+}
+.sideBar{
+    height:100%;
+    background: linear-gradient( rgba(255, 255, 255, 0.5) 40%,
+    rgba(85, 90, 92, 0.5) 60%, 
+    rgba(7, 7, 7, 0.5) 100% 
+);
+    align-items: flex-start;   
+    justify-content: flex-start;
+    padding-top:50px;
+    padding-top: 50px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+#oilHead, #project-head {
+    color:#526fbd
+}
+.sideBar ul {
+    list-style-position: inside; 
+    padding-left: 0; 
+    margin-left: 0; 
+}
+
+#lastUl {
+    border: none
+}
+#oilHead{
+    font-size:20px
+}
+.sideBar p{
+    margin-left: 10px;
+    margin-top:-10px
+}
+li{
+    font-size: 13px
+}
+.listHead{
+    font-size: 16px;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-weight: bold; 
+}
+
+.rightcol{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: visible;
+}
+
+.hj{
+    overflow:visible;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.sideBarimg{
+    max-height: 250px;
+    margin: auto
+}
+footer{
+    margin-bottom: -10px;
+    height: 70px;
+    background-color: #44537c;
+    margin-top: auto;
+    position:relative;    
+    flex-shrink: 0;
+    align-self: flex-end;
+    width: 100%;
+
+}
+.mainGrid{
+    min-height:100vh;
+    overflow: visible; 
+}
+.topBar{
+    background-color: #44537c;
+    margin-top: 0px;
+    box-sizing: border-box;
+    overflow:hidden;
+}
+
+.header-container {
+    background: linear-gradient(to right, rgb(224, 224, 228) 20%,
+    rgb(79, 82, 83) 70%, 
+    rgba(0, 10, 205, 0.05) 100% 
+);
+}
+.b-img{
+    background-image: url("https://raw.githubusercontent.com/Dragsvillestar/new-git/refs/heads/master/ship.jpg");
+    width:100%;
+    background-position: right 100%;
+    margin-bottom:0px;
+    background-position: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.project-list{
+    margin:10px auto;
+    text-align:left;
+    padding-left: 50px;
+    width:80%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.projectUl{
+    text-align:left;;
+    margin-left: -12px;
+}
+.moreDiv {
+    width: 70%;
+    line-height: 1;
+    margin-top: -10px;
+}
+
+#logocaption {
+    background: white;
+    width:fit-content;
+    font-size: medium;
+    color:#526fbd
+}
+
+.logo-area h1{
+    font-size:30px;
+    font-weight: 900;
+    color:#031b5e
+}
+.more{
+    font-size: 11px;
+    margin-right:320px;    
+    color: #031b5e;
+
+}
+
+#searchInput{
+    max-width:200px;
+}
+.image-area {
+    height: 100%
+}
+.navbar-nav li a {
+    color: rgb(175, 160, 160);
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 0.5rem 0;
+    margin-right: 12px;
+}
+
+.navbar-nav li a:hover {
+    color: #ffc107;
+}
+
+#headerlogo{
+    display:none;
+    width:100px;
+    height:80px; 
+    border-radius: 20px;
+}
+#searchInput{
+    background: transparent;
+    border: 3px solid rgb(68, 67, 75);
+    border-radius: 0% 25% 25% 0%
+}
+#searchSpan{
+    background-color: rgb(68, 67, 75);
+    color: white;
+    border: 3px solid rgb(68, 67, 75);
+    border-radius: 25% 0% 0% 25%;
+}
+#figSpan{
+    margin-top:-5px;
+    margin-bottom: 5px
+}
+a {
+    cursor: pointer;
+}
+#imgFigure{
+    background-color: white;
+    border-radius: 10px;
+}
+
+#regDialog {
+    width: 40% !important;
+    max-width: 500px !important;
+    min-width: 400px !important;
+}
+    
+@media (min-width: 992px) {
+    #loginDialog, #contactUsDialog  {
+        width:30%
+    }
+    .header-container {
+        background: linear-gradient(to right, rgb(224, 224, 228) 20%,
+        rgb(79, 82, 83) 83%, 
+        rgba(0, 10, 205, 0.01) 90% 
+    );
+}
+    .moreDiv {
+        width: 40%;
+    }
+}
+
+ @media (max-width: 992px) {
+    .sideDiv{
+        display:none
+    }
+    .topBar{
+        padding:5px;
+        margin-top: 0px;
+    }    
+    #headerlogo{
+        display:block;
+    }
+ }
+ 
+ @media (max-width:576px) {    
+    .header-container {
+        background: linear-gradient(to right, rgb(224, 224, 228) 20%,
+        rgb(79, 82, 83) 100%
+    );
+    }
+    #logocaption{
+        margin:5px auto;
+    }
+ }
+  
+ @media (max-width:768px){
+    .moreDiv{
+        width:100%
+    }
+ }
+#loginDialog, #regDialog, #otpDialog, #contactUsDialog {
+    background-color: rgb(23, 61, 97);
+}
+#usernameSpan, #passwordSpan, #closeLogin, #submitLogin, #closeSignUp, #submitSignUp, #otpSubmit, #otpCancel{
+    background-color: rgb(23, 61, 97);;
+}
+#closeLogin, #submitLogin, #loginDialog, #closeSignUp, #submitSignUp, #closeBio, #bioDialog, #regDialog, #otpDialog, #otpSubmit, #otpCancel, #contactUsDialog {
+    border-radius: 5px;
+}
+
+#contactUsDialog{
+    color:#f1f1f1;
+}
+
+#subscribeWord{
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.subscribe-button {
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .subscribe-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+.subscribe-icon {
+    font-size: 22px;
+    margin-right: 8px;
+  }
+.memberCard img {
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+    border-radius: 50%;
+}
+.memberCard {
+    max-width: 290px;
+    min-width: 180px
+}
+
+.memberImg {
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover; 
+    border-radius: 50%;
+}
+#bioDialog {
+    max-width: 80%;
+}
+#signUpForm label, #otpForm label, #contactUsForm{
+    font-size: 15px;
+    color: white;
+}
+
+#signUpForm button, #otpForm button, #contactUsForm button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    font-size: 15px;
+    margin-top: 8px;
+}
+#signUpForm input,#otpForm input, #contactUsForm input,.contactCard input{
+    height: 25px;
+}
+#signUpForm p, #otpForm p, #contactUsForm p, .contactCard p {
+    font-size: 15px;
+}
+
+.eye-icon:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.toast {
+visibility: hidden;
+max-width: 50%;
+margin: auto;
+background-color: #526fbd; 
+color: #333; 
+text-align: center;
+border-radius: 5px;
+padding: 16px;
+position: fixed;
+z-index: 1000;
+top: 20px; 
+right: 20px; 
+font-size: 16px;
+transition: visibility 0s, opacity 0.5s linear;
+}
+.toast.show {
+visibility: visible;
+opacity: 1;
+}
+
+#submitLogin:active {
+    background-color: #394149; 
+    transform: scale(1.05);
+    opacity: 0.8; 
+}
+
+#submitSignUp:active {
+    background-color: #394149; 
+    transform: scale(1.05);
+    opacity: 0.8; 
+}
+.otp-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+.otp-container input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+  }
+
+.otp-container input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+#toolsSection {
+background-color: rgba(68, 83, 124, 0.5);
+border-radius: 8px;
+
+}
+
+
+::-webkit-scrollbar {
+    width: 12px; 
+    height: 12px; 
+  }
+  
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 16px;
+  }
+  
+::-webkit-scrollbar-thumb {
+    background-color: #44537c;
+    border-radius: 6px;
+    border: 3px solid #7a89b1;
+  }
+  
+::-webkit-scrollbar-thumb:hover {
+    background-color: #8e89ce;
+  }
+
+.contactCard {
+background: #408ef3;
+border-radius: 12px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+padding: 20px;
+width: 80%;
+text-align: center;
+font-size: 15px;
+}
+.contactCardh2 {
+color: white;
+}
+.contactCard p {
+margin: 10px 0;
+color: #555;
+}
+.contactCard a {
+text-decoration: none;
+color: white;
+font-weight: bold;
+}
+.contactCard .phone {
+font-weight: bold;
+color: #333;
+}
+
+.container-ul {
+    max-width: 350px; /* Keeps it compact */
+    background: rgba(255, 255, 255, 0.1); /* Light transparent white */
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px); /* Blurred effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Headings */
+.listHead {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff; /* White for contrast */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 5px;
+    margin-top: 15px;
+    background-color: gray;
+    border-radius: 10px;
+}
+
+/* List styling */
+ul {
+    list-style: none;
+    padding-left: 0;
+    color: #fff; /* White text */
+}
+
+.sideBarli {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 5px 0;
+    font-weight: bold;
+    color: black;
+    text-shadow: 1px 1px 0px white, 
+    -1px -1px 0px white, 
+    -1px 1px 0px white, 
+    1px -1px 0px white;
+}
+

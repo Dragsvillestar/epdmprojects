@@ -1,0 +1,52 @@
+const mongoose = require('mongoose');
+
+const projectSchema = new mongoose.Schema({
+  projectId: { type: String, required: true, unique: true },
+  projectName: { type: String },
+  location: { type: String },
+  capacity: { type: String },
+  client: { type: String },
+  clientHomeCounty: { type: String },
+  projectPartnersStakeholders: { type: String },
+  mainContractor: { type: String },
+  estimatedBudget: { type: String },
+  contractValue: { type: String },
+  localSpending: { type: String },
+  foreignSpending: { type: String },
+  projectScope: { type: String },
+  awardDate: { type: Date },
+  projectStartUpDate: { type: Date },
+  projectCompletionDate: { type: Date },
+  projectStatus: { type: String },
+  projectSchedule: { type: String },
+  localContentPlans: { type: String },
+  majorMilestones: [{ type: String }],
+  projectOverview: { type: String },
+  classification: { type: String },
+  projectFinance: { type: String },
+  subContractors: { type: String },
+  section: { 
+    type: String,
+    set: value => value ? value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : value
+  },
+  projectManagerNameClient: { type: String },
+  projectManagerTelephoneClient: { type: String },
+  projectManagerEmailClient: { type: String },
+  projectCoordinatorNameClient: { type: String },
+  projectCoordinatorTelephoneClient: { type: String },
+  projectCoordinatorEmailClient: { type: String },
+  projectProcurementManagerNameClient: { type: String },
+  projectProcurementManagerTelephoneClient: { type: String },
+  projectProcurementManagerEmailClient: { type: String },
+  projectManagerNameMainContractor: { type: String },
+  projectManagerTelephoneMainContractor: { type: String },
+  projectManagerEmailMainContractor: { type: String },
+  projectCoordinatorNameMainContractor: { type: String },
+  projectCoordinatorTelephoneMainContractor: { type: String },
+  projectCoordinatorEmailMainContractor: { type: String },
+  projectProcurementManagerNameMainContractor: { type: String },
+  projectProcurementManagerTelephoneMainContractor: { type: String },
+  projectProcurementManagerEmailMainContractor: { type: String }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Project', projectSchema);

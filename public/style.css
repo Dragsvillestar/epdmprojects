@@ -1,0 +1,358 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#overall-div {
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: linear-gradient(to right, rgb(224, 224, 228) 20%,
+    rgb(79, 82, 83) 70%, 
+    rgb(109, 111, 112) 100% 
+);
+}
+
+.content-div {
+    border-radius: 15px;
+    background-color: rgb(162, 164, 165);
+}
+.top-section{
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    flex: 0.3;
+    flex-shrink: 0;
+}
+
+.projects{
+    overflow: scroll;
+    flex: 1;
+    height: 100%;
+    background-color: rgb(109, 111, 112);
+    border-radius: 10px 0 0 0;
+}
+#bottom-section{
+    height: 70vh;
+    background-color:  rgb(224, 224, 228);
+    display: flex;
+    flex-direction: row;
+    flex: 0.7;
+    flex-shrink: 0;
+    position: relative;  
+    z-index: 1;
+}
+.navbar-nav .nav-item {
+    position: relative; /* Ensure z-index for dropdown works */
+    z-index: 1000;      /* Higher z-index for dropdown */
+}
+
+.sideBar {
+    width: 40%;
+    max-width:300px;
+    flex-shrink: 0;
+    background: linear-gradient(to bottom, rgb(224, 224, 228) 20%,
+    rgb(79, 82, 83) 70%, 
+    rgb(127, 128, 129) 100% 
+);
+}
+.header-container {
+    background: linear-gradient(to right, rgb(224, 224, 228) 20%,
+    rgb(79, 82, 83) 70%, 
+    rgba(0, 10, 205, 0.05) 80% 
+);
+    height: 28vh;
+}
+.b-img{
+    background-image: url("https://raw.githubusercontent.com/Dragsvillestar/new-git/refs/heads/master/ship.jpg");
+    width:100%;
+    background-position: right 100%;
+    margin-bottom:0px;
+    background-position: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-height: 28vh;
+}
+#topnav {
+    background: linear-gradient(to right, rgb(224, 224, 228) 20%,
+    rgb(79, 82, 83) 70%, 
+    rgb(109, 111, 112) 100% 
+);
+position: relative;  /* Added to ensure z-index works */
+    z-index: 900; 
+}
+
+#topnav button {
+    background-color: rgb(109, 111, 112);
+}
+.logo-area, #hk {
+    height: 28vh;
+}
+#headerlogo{
+    width:100px;
+    height:80px; 
+    border-radius: 20px;
+}
+@media (min-width: 992px) {
+    #loginDialog {
+        width:40%
+    }
+    .header-container {
+        background: linear-gradient(to right, rgb(224, 224, 228) 20%,
+        rgb(79, 82, 83) 80%, 
+        rgba(0, 10, 205, 0.01) 90% 
+    );
+}
+}
+@media (max-width:576px) {    
+    .header-container {
+        background: linear-gradient(to right, rgb(224, 224, 228) 20%,
+        rgb(79, 82, 83) 100%
+    );
+    }
+    #logocaption{
+        margin:5px auto;
+    }
+ }
+
+ .nav-link {
+    display: inline-block;
+    padding: 10px 15px;
+    font-weight: bold;
+    text-decoration: none;
+    background: linear-gradient(to bottom, rgb(224, 224, 228) 20%,
+    rgb(79, 82, 83) 70%, 
+    rgb(127, 128, 129) 100% 
+
+);
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease-in-out;
+    width: auto;
+    height: 40px;
+    margin: 5px;
+    color: white;
+}
+
+.menu .nav-link {
+    height: 60px;
+    font-size: large;
+    color: white;
+    margin: 5px;
+}
+
+.dropdown-menu {
+    background-color: rgb(148, 153, 153);
+}
+
+.offDropdown-menu{
+    background-color: rgb(2, 22, 22);
+}
+.offDropdown-menu li{
+    display: block !important;
+    width: inherit;
+}
+
+.dropdown-menu li{
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgb(102, 105, 105);
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover, .dropdown-menu a:hover, .dropdown-menu li:hover, .nav-linkoff:hover, .offDropdown-menu a:hover, .offDropdown-menu li:hover {
+    background: linear-gradient(to bottom, #ecf1f5 0%, #1c6691 100%);
+    transform: translateY(2px);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.nav-link:active, .nav-link-off:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+}
+.list-group-item{
+    background-color: rgb(162, 164, 165);
+}
+
+.edit-btn {
+    background-color: rgb(110, 113, 114);
+    font-size: 9px;
+    margin-left: 50px;
+    border-radius: 5px;
+}
+#confirmChanges, #cancelChanges {
+    font-size: 12px;
+    margin-left: 20px;
+    border-radius: 5px; 
+    height:25px; 
+    font-size: 15px;
+    background-color: rgb(110, 113, 114);
+}
+#profileDiv {
+    width:50%;
+    min-width: 300px;
+}
+
+/* Give each accordion item a 3D perspective */
+.accordion-item {
+    perspective: 1000px;
+    margin-bottom: 1rem;
+    background: #dfdcdc !important;
+  }
+  
+  /* Style the header to look raised */
+  .accordion-item .accordion-header {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0;
+  }
+  
+  /* Hover effect for a subtle lift */
+  .accordion-item .accordion-header:hover {
+    transform: translateY(-3px) translateZ(5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Accordion button styles: remove default background and border */
+  .accordion-button {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 1.1rem;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 17px; 
+    height: 12px; 
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #acaaaa;
+    border-radius: 16px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #8b8b91;
+    border-radius: 6px;
+    border: 3px solid #7a89b1;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #d8d9dd;
+  }
+
+  .infoDiv {
+    background: linear-gradient(135deg, #b5e5f8, #cdecf7);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    width: 80%;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeIn 0.5s ease-in-out;
+    margin: auto;
+}
+
+/* Subscription Text */
+.infoDiv p {
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+/* "Pay Now" Button */
+.payNowButton {
+    background: white;
+    color: #8dbdf0;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    margin:10px
+}
+
+.payNowButton:hover {
+    background: #6faacc;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#messageParagraph, #payMessage {
+    font-weight: 500;
+}
+
+label[for="all"], label[for="upstream"], label[for="midstream"] {
+    font-size: 25px;
+}
+
+#offcanvas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 70vh;
+    width: 70%;
+    overflow-y: auto;
+    background-color: white;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+    top: auto; 
+    max-width:300px;
+    flex-shrink: 0;
+    background: linear-gradient(to bottom, rgb(224, 224, 228) 20%,
+    rgb(79, 82, 83) 70%, 
+    rgb(127, 128, 129) 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 576px) {
+    .sideBar {
+        display: none;
+    }
+  }
+
+.offDropdown-menu {
+    background-color: rgb(148, 153, 153);
+}
+
+#searchContainer label{
+    font-weight: bold;
+}
+
+#searchCategory{
+    background-color: rgb(148, 153, 153);
+    color: white;
+    width: 100px;
+    font-weight: 700;
+    border-radius: 5px;
+}
+
+#searchButton {
+    border: 2px solid white;
+}
+
+.navbar-toggler-icon{
+    width: 30px;
+    margin: 0;
+}
+
+.navbar-toggler {
+    padding: 0 !important;
+}

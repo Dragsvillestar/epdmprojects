@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EPDM LTD</title>
+  <link href=
+  "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" 
+            rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="bg-primary-subtle" id = "top-navbar">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <div class="blur">
+        <div class="row g-0 mainGrid">
+            <div class="col-lg-3 sideDiv">
+                <div class="navbar p-3 sideBar mx-auto" id="navbar-div2">
+                    <div class="sideBarImgDiv mx-auto" style="height:50px;">
+                        <div class="text-center">
+                          <figure class="text-center p-3" id = "imgFigure">
+                            <img  class = "sideBarimg img-fluid rounded" src="https://raw.githubusercontent.com/Dragsvillestar/new-git/refs/heads/master/IMG-20250125-WA0011%20(1).jpg" alt="">
+                            <figcaption class="mt-2 text-muted"><strong class = "mb-0" style = "font-size : 20px;font-weight: 900;">ENERGY PROJECTS</strong><span id = "figSpan" style = "display:block;font-weight: 600;">DATA MEDIA LTD.</span></figcaption>
+                          </figure>  
+                          <h6 class="p-2 fw-bold" id = "oilHead">OIL AND GAS PROJECTS BY SECTOR</h6>
+                        </div>
+                        <div class="container-ul mx-auto">
+                          <h6 class="listHead text-center">UPSTREAM</h6>
+                          <ul class="mx-3 mt-0 mb-0 text-center">
+                            <li class="sideBarli">Addax</li>
+                            <li class="mb-0 sideBarli">Agip</li>
+                            <li class="mb-0 sideBarli">Exxon</li>
+                            <p class="">.......</li>
+                          </ul>
+                          <h6 class="listHead text-center mt-0">MIDSTREAM</h6>
+                          <ul class="m-3 mt-0 text-center">
+                            <li class="sideBarli">NLNG Ltd</li>
+                            <li class="mb-0 sideBarli">NNPC</li>
+                            <li class="mb-0 sideBarli">Shell</li>
+                            <p class="text-center">.......</p>
+                          </ul>
+                          <ul class="m-3 mt-0 text-center">
+                            <h6 class="listHead text-center">DOWNSTREAM</h6>
+                            <p class="text-center">.......</p>
+                          </ul>
+                          <h6 class="listHead text-center">SERVICE COMPANY</h6>
+                          <ul class="m-3 mt-0 text-center">
+                            <p class="text-center">.......</p>
+                          </ul>                    
+                        </div>
+                    </div>                
+                </div>
+            </div>
+            <div class="col-lg-9 rightcol" style = "height:100%;">
+               <div class="hj">
+                <div class="row main-content" style = "height:100%;">
+                  <div class="col-12" style = "height:100%;">
+                      <div class="b-img">
+                          <div class="header-container p-3">
+                              <div class="logo-area flex-grow-1 text-start">
+                                <div class="d-flex">                                  
+                                  <img  class = "img-fluid mx-2" id = "headerlogo" src="https://raw.githubusercontent.com/Dragsvillestar/new-git/refs/heads/master/IMG-20250125-WA0011%20(1).jpg" alt="">                            
+                                  <h1>ENERGY PROJECTS DATA MEDIA LTD.</h1>                                  
+                                </div>
+                                  <p class="p-2 rounded mt-2" id = "logocaption"><i>your reliable and realtime energy projects data marketplace</i></p>
+                                  <div class="d-flex justify-content-center">
+                                    <h6 class="text-center mx-2">Registered member? <a class="text-danger" id = "loginLink" onclick="openDialog()">Log in</a>
+                                    </h6>                                    
+                                    <h6 class="text-center mx-2">Not a member? <a id = "signUpLink" class="text-danger" onclick="openReg()">Sign Up</a></h6>     
+                                  </div>                                                                  
+                                </div>
+                              <dialog id = "bioDialog">
+                              </dialog>
+                              <dialog id="loginDialog">
+                                <h2>LOGIN</h2>
+                                <form id="loginForm"  method="POST" action="/login">
+                                  <div class="input-group mb-3">
+                                    <span class="input-group-text" id="usernameSpan">Username</span>
+                                    <input type="text" class="form-control" placeholder="Username" id = "username" name="username" required>
+                                  </div>
+                                  <div class="input-group mb-3">
+                                    <span class="input-group-text" id="passwordSpan">Password</span>
+                                    <input type="password" class="form-control" placeholder="Password" id = "password" name="password" required>
+                                    <span id="eyeIcon" class="eye-icon p-1" style = "background-color: white; border-radius: 0 5px 5px 0;">show</span>
+                                  </div>
+                                  <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                      <button type="submit" id="submitLogin" class="btn btn-primary">Login</button>
+                                      <button type="button" id="closeLogin" class="btn btn-secondary">Cancel</button>
+                                    </div>
+                                    <button type="button" id="resendVerEm" class="btn btn-primary" style="display: none;">Send verifcation email</button>
+                                  </div>                                  
+                                </form>
+                                <a class="text-center text-light" href="/forgot-password"  target="_blank">Forgot Password?</a>
+                                <p id="error-message" class= "text-center mt-3" style="color: white;"></p>
+                              </dialog>
+                              <dialog id = "regDialog">                                  
+                                  <form id="signUpForm">
+                                      <div class="mb-1">
+                                          <label for="signUpUsername" class="form-label">Name (Company/Person)</label>
+                                          <input type="text" class="form-control" id="signUpUsername" name="username" placeholder="Enter your name" required>
+                                          <p id = "usernameError" class = "mb-0"></p>
+                                      </div>
+                                      <div class="mb-1">
+                                          <label for="signUpPassword" class="form-label">Password</label>
+                                          <div class="input-group">
+                                          <input type="password" class="form-control" id="signUpPassword" name="password" placeholder="Enter your password" minlength="8" required>
+                                          <span id="signUpShow" class="eye-icon px-1" style = "background-color: white; border-radius: 0 5px 5px 0;padding: auto;">show</span>
+                                          </div>
+                                          <p id = "passwordError" class = "mb-0"></p>
+                                      </div>
+                                      <div class="mb-1">
+                                          <label for="signUpPosition" class="form-label">Position</label>
+                                          <input type="text" class="form-control" id="signUpPosition" name="position" placeholder="Enter your position" required>
+                                      </div>
+                                      <div class="mb-1">
+                                          <label for="signUpEmail" class="form-label">Email Address</label>
+                                          <input type="email" class="form-control" id="signUpEmail" name="email" placeholder="Enter your email" required>
+                                          <p id = "emailError" class = "mb-0"></p>
+                                      </div>
+                                      <div class="mb-1">
+                                          <label for="signUpPhone" class="form-label">Phone Number</label>
+                                          <input type="tel" class="form-control" id="signUpPhone" name="phone" placeholder="Enter your phone number" required>
+                                          <p id = "phoneError" class = "mb-0"></p>
+                                          <p id = "otpInfo" class = "mb-0" style="display:none;">Your phone has to be verified <button id = "otpRequest" type = "button" onclick = "openOtp()">Request Otp</button></p>
+                                      </div>
+                                      <div class="mb-1">
+                                          <label for="signUpAddress" class="form-label">Business Address</label>
+                                          <input type="text" class="form-control" id="signUpAddress" name="address" placeholder="Enter your business address" required>
+                                      </div>
+                                      <div class="mb-1">
+                                          <label for="signUpNature" class="form-label">Nature of Business</label>
+                                          <input type="text" class="form-control" id="signUpNature" name="nature" placeholder="Enter the nature of your business" required>
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                          <button type="submit" id="submitSignUp" class="btn btn-primary" disabled>Sign Up</button>
+                                          <button type="button" id="closeSignUp" class="btn btn-secondary" onclick="closeReg()">Cancel</button>
+                                      </div>
+                                      <div class="mb-3">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="termsConditions" required>
+                                          <label class="form-check-label" for="termsConditions">
+                                            I agree to the <a href="/terms" target="_blank">Terms and Conditions</a>.
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <p id = "regInfo" class = "mt-2 mb-0 text-center text-white" style = "font-size:15px"></p>
+                                      <div id="recaptcha-container"></div>
+                                  </form>
+                              </dialog>
+                              <dialog id = "contactUsDialog">
+                                <h2>Contact Us</h2>
+                                <form id="contactUsForm" action="/submit" method="POST">
+                                  <div class="mb-3">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="contactUsName" name="name" required>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="contactUsEmail" name="email" required>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="contactUsMessage" name="message" rows="4" required></textarea>
+                                  </div>
+                                  <div class="d-flex justify-content-between mb-2">
+                                    <button class="btn btn-primary" id = "contactUsCancel">Cancel</button>
+                                    <button type="submit" id = "contactUsSubmit" class="btn btn-primary">Submit</button>
+                                  </div>                                  
+                                </form>
+                                <div class="contactCard mx-auto">
+                                  <h6>Or you can reach us directly on</h6>
+                                  <h2>Energy Projects Data Media Limited</h2>
+                                  <p><strong>Suite No 16, First Floor, Jabita Court,</strong></p>
+                                  <p>Plot 136, Alake Onile-ere Crescent,</p>
+                                  <p>Gbagada Phase 2 Estate, Gbagada, Lagos State, Nigeria.</p>
+                                  <p><strong>Email:</strong> <a href="mailto:info@energyprojectsdata.com">info@energyprojectsdata.com</a></p>
+                                  <p class="phone">📞 +2348022391121, +2347064186609</p>
+                              </div>
+                              </dialog> 
+                              <dialog id="otpDialog">
+                                <form id="otpForm" action="/otp-verification" method="post">
+                                  <p>An OTP has been sent to <span id="otpNumber"></span></p> 
+                                  <p>Enter OTP Below</p>                                 
+                                  <div class="otp-container">
+                                    <input type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+                                    <input type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+                                    <input type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+                                    <input type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+                                    <input type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+                                    <input type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]" required>
+                                  </div>                              
+                                  <input type="hidden" id="otpInput" name="otp">                              
+                                  <div class="d-flex justify-content-between">
+                                    <button id="otpCancel" type="button" onclick="closeOtp()">Cancel</button>
+                                    <button id="otpSubmit" type="submit">Confirm</button>
+                                  </div>
+                                </form>
+                              </dialog>                                                                                             
+                          </div>
+                      </div>
+                      <nav class="navbar navbar-expand-md topBar">
+                          <div class="container-fluid">
+                            <button class="navbar-toggler m-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                              <ul class="navbar-nav  d-flex topBarUl mx-auto">
+                                <li class="nav-item">
+                                  <a class="nav-link text-light" onclick= "aboutUs()">ABOUT US</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link text-light" href="#" onclick="services()">OUR SERVICES</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link text-light" id = "teamInfo" onclick="ourTeam()">OUR TEAM</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link text-light" href="#" id = "partners">OUR PARTNERS</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link text-light" href="#">PROJECT INTERVIEW</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link text-light" href="#">NEWS</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link text-light" href="#" onclick="contactUs()">CONTACT US</a>
+                                </li>                        
+                              </ul>
+                            </div>
+                          </div>
+                      </nav>
+                      <div class="project-list mb-0 p-1">
+                        <div class="projectUl">                           
+                          <ul style="list-style-position: inside;">
+                            <h5 class="fw-bold mb-3" id="project-head">OIL AND GAS PROJECTS</h5>
+                            <li class="fw-bold m-3 sideBarli">NLNG Train 7 Project</li>
+                            <li class="fw-bold m-3 sideBarli">AKK Gas Pipeline Project</li>
+                            <li class="fw-bold m-3 sideBarli">Shell Southern Swamp AGS 3B Project</li>
+                            <li class="fw-bold m-3 sideBarli">Preowei Deepwater Dev. Project</li>
+                          </ul>
+                        </div>
+                      
+                        <div class="row mb-2 moreDiv">
+                          <div class="col-4"></div>
+                          <div class="col-4"></div>
+                          <div class="col-4">
+                            <p class="text-end fw-bold more d-flex">more <i class="bi bi-chevron-double-right"></i></p>
+                          </div>
+                        </div>
+                        
+                        <section id="toolsSection" class="py-2">
+                          <div class="container">
+                            <div class="row align-items-center">
+                              <div class="col-lg-8">
+                                <h2 class="display-5 text-light fw-bold mb-2">TOOLS FOR SUCCESS</h2>
+                                <p class="lead text-light">
+                                  EPDM tracks thousands of energy projects and provides real-time, accurate, and reliable resources for companies seeking new business opportunities and up-to-date industry insights. EPDM delivers the latest information on planned, ongoing, and future energy projects to empower your success.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        
+                        <div class="input-group input-group-sm mt-2 mb-1 d-flex justify-content-end">
+                          <span class="input-group-text" id="searchSpan">Search</span>
+                          <input type="text" class="form-control" id="searchInput">
+                        </div>
+
+                        <div class="input-group input-group-sm mt-2 mb-1 d-flex justify-content-end">
+                          <button class="btn" style="background-color: #44537c; color: white;">Request a Demo</button>
+                        </div>
+
+                      </div>                                                                     
+                  </div>
+              </div>
+               </div>                
+              <footer class="text-light text-center">
+                <div class = "d-flex justify-content-center">
+                   <p class="text-start p-3">Copyright @ 2025. All rights reserved Energy Projects Data Media Ltd.</p>
+                </div>                             
+          </footer>             
+            </div>
+        </div>
+        <div id="toast" class="toast">/div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+  </script>
+  
+  <script src="./script.js">
+    
+  </script>
+</body>
+</html>

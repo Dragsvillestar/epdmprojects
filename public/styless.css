@@ -1,0 +1,115 @@
+body{
+  font-family: Arial, sans-serif; 
+  background-color: rgb(129, 137, 139); 
+  padding: 50px; 
+  width: 100%;
+}
+dialog {
+  font-family: 'Poppins', sans-serif;
+}
+#adminLoginDialog, #adminSignUpDialog, #projectFindDialog, .delete { 
+  background: #44537c; 
+  padding: 20px; 
+  border-radius: 15px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+  width: 30%;
+  min-width: 320px;
+
+}
+
+#adminMainDialog{
+  background: #44537c; 
+  padding: 20px; 
+  border-radius: 15px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+#projectRegDialog, #projectUpdateDialog{
+  background: #44537c; 
+  padding: 20px; 
+  border-radius: 15px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+  min-width: 500px;
+}
+
+@media (max-width: 576px) {
+  #projectRegDialog, #projectUpdateDialog{
+    min-width: auto; /* or a smaller value */
+    max-width: 350px;
+  }
+}
+
+input { 
+  margin: 10px 0; 
+  padding: 8px; 
+  width: 80%; 
+  border-radius: 10px; 
+  border: 1px solid #ccc;
+}
+button { 
+  background: #007bff; 
+  color: white; 
+  border: none; 
+  padding: 10px; 
+  cursor: pointer; 
+  border-radius: 15px; 
+}
+button:hover { 
+  background: #0056b3; 
+}
+label { 
+  margin-right: 5px; 
+  color: white; 
+}
+::-webkit-scrollbar {
+  width: 12px; 
+  height: 12px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #44537c;
+  border-radius: 6px;
+  border: 3px solid #7a89b1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #8e89ce;
+}
+
+p#message { 
+  color: white; 
+  margin-top: 10px; 
+  font-weight: bold; 
+}
+
+
+#adminLoginDialog {
+    border: none
+}
+
+.loginButtons button, #projectFindDialog button, .delete Button{
+  border-radius: 5px;
+}
+
+#projectSaveStatus {
+  color: rgb(76, 170, 233);
+}
+.edit-btn {
+  background-color: rgb(76, 170, 233);
+  font-size: 9px;
+  margin-left: 50px;
+  border-radius: 5px;
+}
+
+#confirmChanges, #cancelChanges, #goBack {
+  border-radius: 5px; 
+}
+
+.eye-icon:hover{
+  cursor: pointer;
+}
