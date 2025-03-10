@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
             tx_ref: "test_" + Date.now(),
             amount,
             currency: "NGN",
-            redirect_url: "http://localhost:3000/api/initiate-payment/payment-success",
+            redirect_url: "https://www.energyprojectsdata.com/api/initiate-payment/payment-success",
             payment_options: "card, banktransfer", // Payment methods supported
             customer: { email, name }
         };

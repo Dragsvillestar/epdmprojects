@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   });
 
 function sendVerificationEmail(email, token) {
-const verificationUrl = `http://localhost:3000/verify-email?token=${token}`;
+const verificationUrl = `https://www.energyprojectsdata.com/verify-email?token=${token}`;
 
 const mailOptions = {
     from: "no-reply@yourdomain.com",
