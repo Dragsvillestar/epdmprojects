@@ -47,7 +47,7 @@ const projectSchema = new mongoose.Schema({
   projectProcurementManagerNameMainContractor: { type: String },
   projectProcurementManagerTelephoneMainContractor: { type: String },
   projectProcurementManagerEmailMainContractor: { type: String },
-  favUsersEmails: [{ type: String, default: [] }]
+  subscribersEmails: [{ type: String, default: [] }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Project', projectSchema);

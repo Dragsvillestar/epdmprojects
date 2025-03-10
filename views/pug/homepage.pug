@@ -56,14 +56,15 @@ html(lang="en")
             ul.navbar-nav.text-center.flex-column.p-2
               li.nav-item.menu
                 a.nav-link(href="/home") Home
-              li.nav-item.menu
-                a.nav-link#projectsmenu(href="#") Projects
+              li.nav-item.menu.dropdown
+                a.nav-link.dropdown-toggle#projectsmenu(href="#", data-bs-toggle="dropdown") Projects
+                div.dropdown-menu
+                  a.dropdown-item#favoritesProjects.favouritesBtn(href="#") Favorites
+                  a.dropdown-item#newsletterProjects.newsletterBtn(href="#") Newsletter
               li.nav-item.menu
                 a.nav-link(href="#") News
               li.nav-item.menu
                 a.nav-link(href="#") Subscriptions
-              li.nav-item.menu
-                a.nav-link.favouritesBtn(href="#") Favourites
         div.offcanvas.offcanvas-start.d-sm-none(tabindex="-1" id="offcanvas" data-bs-backdrop="false")
           div.offcanvas-header
           div.offcanvas-body
@@ -71,14 +72,15 @@ html(lang="en")
               ul.navbar-nav.text-center.flex-column.p-2
                 li.nav-item
                   a.nav-link(href="/home") Home
-                li.nav-item
-                  a.nav-link#offProjectsmenu(href="") Projects
+                li.nav-item.menu.dropdown
+                  a.nav-link.dropdown-toggle#offProjectsmenu(href="#", data-bs-toggle="dropdown") Projects
+                  div.dropdown-menu
+                   a.dropdown-item#offFavoritesProjects.favouritesBtn(href="#") Favorites
+                   a.dropdown-item#offNewsletterBtn(href="#") Newsletter                
                 li.nav-item
                   a.nav-link(href="") News
                 li.nav-item
-                  a.nav-link(href="") Subscriptions
-                li.nav-item
-                  a.nav-link.favouritesBtn(href="") Favourites
+                  a.nav-link(href="") Subscriptions                
                 li.nav-item.dropdown.mx-3.fw-bold.topnavItem
                   a.nav-link.dropdown-toggle.f-2(href="#", role="button", data-bs-toggle="dropdown", aria-expanded="false") ⚙️ Settings
                   ul.dropdown-menu.offDropdown-menu

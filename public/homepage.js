@@ -311,16 +311,75 @@ function filterFavoritesOnly() {
   });
 }
 
+function fetchSubscriptions() {
+  return fetch("/projects/getUserSubscribed")
+    .then(response => response.json())
+    .then(data => {
+      // Assuming the endpoint returns an object like { subscribedProjects: ['proj1', 'proj2', ...] }
+      userSubscribedProjects = data.subscribedProjects || [];
+      console.log(userSubscribedProjects);
+    })
+    .catch(err => console.error("Error fetching user subscriptions:", err));
+}
+
+function loadSubscriptions() {
+  // Select all newsletter checkboxes by name attribute.
+  const newsCheckboxes = document.querySelectorAll("input[name='newsletter']");
+
+  newsCheckboxes.forEach(checkbox => {
+    // Assuming checkbox id is of the form "newsletter-<projectId>"
+    const projectId = checkbox.id.split("newsletter-")[1];
+    if (userSubscribedProjects.includes(projectId)) {
+      checkbox.checked = true;
+      // Update the corresponding label's text content.
+      const label = document.querySelector(`label[for="${checkbox.id}"]`);
+      if (label) {
+        label.textContent = "Subscribed to newsletter";
+      }
+    }
+  });
+}
+
+function filterSubscribedOnly() {
+  // Select all accordion items within the projects accordion.
+  const accordionItems = document.querySelectorAll("#projectsAccordion .accordion-item");
+
+  accordionItems.forEach(item => {
+    // Find the newsletter checkbox within the current accordion item.
+    const newsCheckbox = item.querySelector("input[name='newsletter']");
+    
+    // If the newsletter checkbox exists and is checked, show the item.
+    // Otherwise, hide it.
+    if (newsCheckbox && newsCheckbox.checked) {
+      item.style.display = "";  // Show the item (or use "block" if needed)
+    } else {
+      item.style.display = "none";  // Hide the item.
+    }
+  });
+}
+
 document.querySelectorAll(".favouritesBtn").forEach(button => {
   button.addEventListener("click", filterFavoritesOnly);
 });
 
+document.querySelectorAll(".newsletterBtn").forEach(button => {
+  button.addEventListener("click", filterSubscribedOnly);
+});
+
+document.getElementById("offNewsletterBtn").addEventListener("click",filterSubscribedOnly);
+
 projectsMenu.addEventListener("click", (event) => {
   loadProjects(event);
+
   fetchFavs().then(() => {
     loadFaves();
   });
+
+  fetchSubscriptions().then(() => {
+    loadSubscriptions();
+  });
 });
+
 
 document.getElementById("offProjectsmenu").addEventListener("click", (event) => {
   loadProjects(event);
@@ -552,6 +611,8 @@ function loadProjects(event) {
         contentDiv.appendChild(accordionDiv);
         fetchFavs();
         loadFaves();
+        fetchSubscriptions() 
+        loadSubscriptions()
       }
 
       updateProjectList();
