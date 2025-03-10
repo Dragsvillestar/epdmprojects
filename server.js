@@ -27,6 +27,7 @@ const newProjectRoute = require("./project/newProject");
 const adminRoute = require("./project/adminlogin");
 const paymentRoute = require("./controllers/payment");
 const zohoRoute = require("./controllers/zoho");
+const currentProjectsRoute = require("./project/currentProjects")
 
 
 const app = express();
@@ -55,6 +56,7 @@ app.use("/new-project", newProjectRoute);
 app.use("/admin", adminRoute);
 app.use("/api/initiate-payment", paymentRoute);
 app.use("/api/zoho", zohoRoute);
+app.use("/projects", currentProjectsRoute)
 
 app.use((req, res, next) => {
   console.log('Session Data:', req.session);

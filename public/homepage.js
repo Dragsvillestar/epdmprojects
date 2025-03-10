@@ -246,7 +246,8 @@ const fieldMappings = {
 function filterEmptyValues(obj) {
   return Object.entries(obj)
     .filter(([key, value]) =>
-      key !== '_id' &&           // Remove mongoose id
+      key !== '_id' &&
+      key !== 'favUsersEmails' &&           // Remove mongoose id
       key !== '__v' &&           // Optionally remove version key
       value !== null &&
       value !== '' &&
@@ -258,12 +259,74 @@ function filterEmptyValues(obj) {
     }, {});
 }
 
+let userFavProjects = [];
+let userSubscribedProjects = [];
+
+// Fetch the user's favorite projects from your backend.
+function fetchFavs() {
+  return fetch("/projects/getUserfavourites")
+    .then(response => response.json())
+    .then(data => {
+      // Assuming the endpoint returns an object like { favProjects: ['proj1', 'proj2', ...] }
+      userFavProjects = data.favProjects || [];
+      console.log(userFavProjects);
+    })
+    .catch(err => console.error("Error fetching user favourites:", err));
+}
+
+// Once projects are loaded, check each accordion item's favorite checkbox (favbox)
+// if its projectId is present in userFavProjects, and update its label.
+function loadFaves() {
+  // Select all favorite checkboxes by name attribute.
+  const favCheckboxes = document.querySelectorAll("input[name='favourite']");
+  
+  favCheckboxes.forEach(checkbox => {
+    // Assuming checkbox id is of the form "favourite-<projectId>"
+    const projectId = checkbox.id.split("favourite-")[1];
+    if (userFavProjects.includes(projectId)) {
+      checkbox.checked = true;
+      // Update the corresponding label's text content.
+      const label = document.querySelector(`label[for="${checkbox.id}"]`);
+      if (label) {
+        label.textContent = "Added to favourites";
+      }
+    }
+  });
+}
+
+function filterFavoritesOnly() {
+  // Select all accordion items within the projects accordion.
+  const accordionItems = document.querySelectorAll("#projectsAccordion .accordion-item");
+  
+  accordionItems.forEach(item => {
+    // Find the favorite checkbox within the current accordion item.
+    const favCheckbox = item.querySelector("input[name='favourite']");
+    // If the favorite checkbox exists and is checked, show the item.
+    // Otherwise, hide it.
+    if (favCheckbox && favCheckbox.checked) {
+      item.style.display = "";  // Show the item (or use "block" if needed)
+    } else {
+      item.style.display = "none";  // Hide the item.
+    }
+  });
+}
+
+document.querySelectorAll(".favouritesBtn").forEach(button => {
+  button.addEventListener("click", filterFavoritesOnly);
+});
+
 projectsMenu.addEventListener("click", (event) => {
   loadProjects(event);
+  fetchFavs().then(() => {
+    loadFaves();
+  });
 });
 
 document.getElementById("offProjectsmenu").addEventListener("click", (event) => {
   loadProjects(event);
+  fetchFavs().then(() => {
+    loadFaves();
+  });
 });
 
 function loadProjects(event) {
@@ -437,13 +500,32 @@ function loadProjects(event) {
           newsGroup.appendChild(newsLabel);
           checkboxDiv.appendChild(newsGroup);
 
+          newsCheckbox.addEventListener("change", () => {
+            const payload = {
+              projectId: project.projectId,
+              subscribed: newsCheckbox.checked
+            };
+
+            fetch("/projects/newsletter", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload)
+            })
+              .then(response => response.json())
+              .then(data => {
+                if (data.subscribedProjects) userSubscribedProjects = data.subscribedProjects;
+                console.log("Newsletter subscription status saved:", data);
+              })
+              .catch(error => console.error("Error saving subscription:", error));
+          });
+
           favCheckbox.addEventListener("change", () => {
             const payload = {
               projectId: project.projectId,
               favourite: favCheckbox.checked
             };
 
-            fetch("/user/favourite", {
+            fetch("/projects/favourites", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(payload)
@@ -468,6 +550,8 @@ function loadProjects(event) {
         });
 
         contentDiv.appendChild(accordionDiv);
+        fetchFavs();
+        loadFaves();
       }
 
       updateProjectList();

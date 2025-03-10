@@ -16,7 +16,8 @@ const loggerSchema = new mongoose.Schema({
     lastVerificationRequest: { type: Date, default: null },
     subscribed: { type: Boolean, default: false },
     subscriptionExpiry: { type: Date, default: null },
-  });
+    favProjects: [{ type: String, default: [] }]
+  }, { timestamps: true });
   
   
   const Logger = mongoose.model("Logger", loggerSchema);
